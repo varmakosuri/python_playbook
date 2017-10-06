@@ -1,0 +1,5 @@
+- hosts: ubuntu1
+  become: 'yes'
+  tasks:
+  - name: Installing python2.7
+    package: {name: python2.7, state: present}

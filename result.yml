@@ -1,0 +1,11 @@
+!!python/object/apply:collections.OrderedDict
+- - - abc
+    - !!python/object/apply:collections.OrderedDict
+      - - - x
+          - !!python/object/apply:collections.OrderedDict
+            - - - 0
+                - null
+        - - y
+          - !!python/object/apply:collections.OrderedDict
+            - - - 1
+                - null

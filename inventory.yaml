@@ -1,0 +1,11 @@
+---
+#_Author: Satish
+# File is responsible for maintaining whole inventory information
+-
+  inventory_file_path: ubuntu1.yaml
+  repository: hello
+  hosts:
+   -
+     ip: 192.168.50.94
+     user: root
+     pwd: Nexii@123

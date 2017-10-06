@@ -1,0 +1,12 @@
+softwares:
+  - python2.7
+  - apache2
+  - mysql-server
+  - python-selinux
+  - python-mysqldb
+patches:
+  - patch1
+  - patch2
+configurations:
+  - conf1
+  - conf2

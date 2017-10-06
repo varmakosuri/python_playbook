@@ -1,0 +1,14 @@
+- hosts: ubuntu1
+  become: 'yes'
+  tasks:
+  - name: installing software apach2
+    package:
+      name: apache2 
+      state: absent
+  - name: installing python 
+    package: name=python2.7 state=absent
+  - name: copying configuration file for apach2
+    template: src=/etc/ansible/apache2.j2 dest=/etc/apache2/apache2.cfg backup=yes 
+
+
+

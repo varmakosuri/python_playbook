@@ -1,0 +1,13 @@
+- hosts: ubuntu1
+  become: 'yes'
+  tasks:
+  - name: Installing python2.7
+    package: {name: python2.7, state: present}
+  - name: Installing apache2
+    package: {name: apache2, state: present}
+  - name: Installing mysql-server
+    package: {name: mysql-server, state: present}
+  - name: Installing python-selinux
+    package: {name: python-selinux, state: present}
+  - name: Installing python-mysqldb
+    package: {name: python-mysqldb, state: present}

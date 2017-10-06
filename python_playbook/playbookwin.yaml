@@ -1,0 +1,9 @@
+---
+  - hosts: all
+    tasks:
+    - name:  check windows hosts is accessible or not
+      win_ping:
+   #   register: value= "{{ ansible_ip_addresses }}"
+    - local_action: copy content={{ ansible_ip_addresses[0],ansible_kernel }} dest=/tmp/file
+      when: ansible_distribution == "Microsoft Windows 7 Professional "
+       
