@@ -1,0 +1,24 @@
+softwares:
+  - python2.7
+  - mysql-server
+  - python-selinux
+  - python-mysqldb:
+     -
+       service_name: mysql
+       state: restarted
+       enabled: yes
+  - apache2:
+     -
+       service_name: apache2
+       state: restarted
+  - php
+  - libapache2-mod-php
+patches:
+  - patch1
+  - patch2
+configurations:
+  -
+   filepath: /etc/apache2/apache2.conf
+   vars:
+     Timeout: 500
+     MaxKeepAliveRequests: 700

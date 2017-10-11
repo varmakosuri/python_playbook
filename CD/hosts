@@ -1,0 +1,2 @@
+[ubuntu1]
+192.168.50.94	ansible_ssh_user=root	ansible_ssh_pass=Nexii@123

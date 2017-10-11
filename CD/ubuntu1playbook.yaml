@@ -1,0 +1,28 @@
+- hosts: ubuntu1
+  become: 'yes'
+  tasks:
+  - name: Installing python2.7
+    package: {name: python2.7, state: present}
+  - name: Installing mysql-server
+    package: {name: mysql-server, state: present}
+  - name: Installing python-selinux
+    package: {name: python-selinux, state: present}
+  - name: Installing python-mysqldb
+    package: {name: python-mysqldb, state: present}
+  - name: Restarting... mysql service.
+    service: {name: mysql, state: restarted, enabled: 'yes'}
+  - name: Installing apache2
+    package: {name: apache2, state: present}
+  - name: Restarting... apache2 service.
+    service: {name: apache2, state: restarted}
+  - name: Installing php
+    package: {name: php, state: present}
+  - name: Installing libapache2-mod-php
+    package: {name: libapache2-mod-php, state: present}
+  - name: 'fetching the file from remote host '
+    fetch: {src: /etc/apache2/apache2.conf, dest: /etc/ansible/CD/, flat: 'yes'}
+  - set_fact:
+      dict0: {filepath: apache2.conf, MaxKeepAliveRequests: 700, Timeout: 500}
+  - {command: 'sudo python /etc/ansible/CD/find_and_replace.py "{{dict0}}"'}
+  - name: 'copying the file to remote host '
+    copy: {src: /etc/ansible/CD/apache2.conf, dest: /etc/apache2/apache2.conf}
