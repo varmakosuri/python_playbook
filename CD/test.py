@@ -131,7 +131,7 @@ def main():
 		filepath = conf.get('filepath').split('/')[-1]
 		vars_dict = conf.get('vars')
 		test_dict = OrderedDict()
-		test_dict.update([('filepath', filepath)])
+		test_dict.update([('filepath', '/etc/ansible/CD/' + filepath)])
 		for k, v in vars_dict.items():
 		    test_dict.update([(k,v)])
 		sw_dict = OrderedDict([('name', "fetching the file from remote host "), ('fetch', OrderedDict([('src', src_filepath), ('dest', '/etc/ansible/CD/'), ('flat', 'yes')]))])

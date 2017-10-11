@@ -22,7 +22,7 @@
   - name: 'fetching the file from remote host '
     fetch: {src: /etc/apache2/apache2.conf, dest: /etc/ansible/CD/, flat: 'yes'}
   - set_fact:
-      dict0: {filepath: apache2.conf, MaxKeepAliveRequests: 700, Timeout: 500}
+      dict0: {filepath: /etc/ansible/CD/apache2.conf, MaxKeepAliveRequests: 700, Timeout: 500}
   - {command: 'sudo python /etc/ansible/CD/find_and_replace.py "{{dict0}}"'}
   - name: 'copying the file to remote host '
     copy: {src: /etc/ansible/CD/apache2.conf, dest: /etc/apache2/apache2.conf}
