@@ -25,24 +25,31 @@ def ModConfig(File, Variable, Setting):
 
     for line in fileinput.input(File, inplace = 1):
         # process lines that look like config settings #
+	split_str = ''
+        key=''
         if not line.strip().startswith('#') and line.strip() or '=' in line.strip() or ':' in line.strip() or ' ' in line.strip():
-            #import pdb;pdb.set_trace()
 	    if '=' in line:
-		_infile_var = str(line.split('=')[0].strip())
-		_infile_set = str(line.split('=')[1].strip())
-		split_str = '='
+		vals = line.split('=')
+		if len(vals) == 2:
+		    key = str(vals[0].strip())
+		    val = str(vals[1].strip())
+		    split_str = '='
 	    elif ':' in line:
-		_infile_var = str(line.split(':')[0].strip())
-		_infile_set = str(line.split(':')[1].strip())
-		split_str = ':'
+		vals = line.split(':')
+		if len(vals) == 2:
+		    key = str(vals[0].strip())
+		    val = str(vals[1].strip())
+		    split_str = ':'
 	    elif ' ' in line:
-		_infile_var = str(line.split()[0].strip())
-		_infile_set = str(line.split()[1].strip())
+		vals = line.split()
+		if len(vals) == 2:
+		    key = str(vals[0].strip())
+		    val = str(vals[1].strip())
             # only change the first matching occurrence #
-            if VarFound == False and _infile_var.strip(' ') == V:
+            if VarFound == False and key.strip(' ') == V:
                 VarFound = True
                 # don't change it if it is already set #
-                if _infile_set.strip(' ') == S:
+                if val.strip(' ') == S:
                     AlreadySet = True
                 else:
 		    if split_str == '=':
@@ -55,13 +62,13 @@ def ModConfig(File, Variable, Setting):
 
     # Append the variable if it wasn't found #
     if not VarFound:
-        print "Variable '%s' not found.  Adding it to %s" % (V, File)
+        #print "Variable '%s' not found.  Adding it to %s" % (V, File)
         with open(File, "a") as f:
             f.write("%s = %s\n" % (V, S))
-    elif AlreadySet == True:
-        print "Variable '%s' unchanged" % (V)
-    else:
-        print "Variable '%s' modified to '%s'" % (V, S)
+    #elif AlreadySet == True:
+        #print "Variable '%s' unchanged" % (V)
+    #else:
+        #print "Variable '%s' modified to '%s'" % (V, S)
 
     return
 def main():
